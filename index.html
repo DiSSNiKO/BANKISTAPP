@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/Main.css" />
+  <link rel="stylesheet" href="css/usersandfun.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+
+  <title>Bankist</title>
+</head>
+
+<body>
+  <header>
+    <div id="greeting">
+      <h1>Good day,</h1>
+      <h1 id="userName">please log in.</h1>
+    </div>
+    <div id="headerLogo"><img src="/logo.png" alt="logou"></div>
+    <div id="userChange">
+      <input type="text" id="user" placeholder="USER">
+      <input type="text" id="userPin" placeholder="PIN">
+      <button id="userChangeButt">→</button>
+    </div>
+  </header>
+  <div class="Main">
+    <div id="balanceInfo">
+      <div id="currentBal">
+        <h1 id="currentBalString">Current balance:</h1>
+        <h1 id="date">As of 6/09/22, 4:20 PM</h1>
+      </div>
+      <div id="balValue">
+        <h1>$16,421.00</h1>
+      </div>
+    </div>
+    <div id="usersAndFunction">
+      <div id="transactionsContainer"></div>
+      <div id="functionsContainer">
+        <div class="bankFunCont nonlast" id="moneyTransfer">
+          <h1>Transfer money</h1>
+          <div class="inputsArrow">
+            <input type="text" id="transferTo">
+            <input type="text" id="transferAmount">
+            <button id="initiateTransfer">➤</button>
+          </div>
+          <div class="underInputText">
+            <h3>Transfer to</h3>
+            <h3>Amount</h3>
+          </div>
+        </div>
+        <div class="bankFunCont nonlast" id="requestLoan">
+          <h1>Request loan</h1>
+          <div class="inputsArrow">
+            <input type="text" id="requestAmount">
+            <button id="initiateRequest">➤</button>
+          </div>
+          <div class="underInputText">
+            <h3>Amount</h3>
+          </div>
+        </div>
+        <div class="bankFunCont" id="closeAccount">
+          <h1>Close account</h1>
+          <div class="inputsArrow">
+            <input type="text" id="closeUserName">
+            <input type="text" id="closeUserPin">
+            <button id="closeUserButton">➤</button>
+          </div>
+          <div class="underInputText">
+            <h3>Confirm user</h3>
+            <h3>Confirm PIN</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footerValues">
+      <h3>IN</h3>
+      <span class="footerValueP"></span>
+    </div>
+    <div class="footerValues">
+      <h3>OUT</h3>
+      <span class="footerValueN"></span>
+    </div>
+    <div class="footerValues">
+      <h3>INTEREST</h3>
+      <span class="footerValueP"></span>
+    </div>
+    <button id="sortButton">Sort ⬇</button>
+    <div id="loggedOutIn">
+      <h3>You will be logged out in: </h3>
+      <span id="logoutTimer">9:59</span>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+
+</html>

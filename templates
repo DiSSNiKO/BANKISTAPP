@@ -1,0 +1,15 @@
+transaction template
+        <div class="transaction notlasttrans">
+          <div class="actionDate">
+            <h3 class="actionDisplay"></h3>
+            <h3 class="actionDateDisplay"></h3>
+          </div>
+          <span class="financial"></span>
+        </div>
+        <div class="transaction">
+            <div class="actionDate">
+              <h3 class="actionDisplay"></h3>
+              <h3 class="actionDateDisplay"></h3>
+            </div>
+            <span class="financial"></span>
+          </div>

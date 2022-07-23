@@ -1,0 +1,18 @@
+.Main {
+    margin: 3% 20%;
+    margin-bottom: 0;
+}
+#balanceInfo {
+    display: flex;
+    justify-content: space-between;
+}
+#balValue {
+    font-size: xx-large;
+}
+#currentBalString {
+    font-size: x-large;
+}
+#date {
+    color: rgba(128, 128, 128, 0.719);
+    font-size: medium;
+}

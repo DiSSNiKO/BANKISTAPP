@@ -1,0 +1,60 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+#greeting {
+    display: flex;
+    width: 40%;
+}
+#greeting h1 {
+    font-size: 2.5rem;
+    padding-right: 10px;
+}
+#headerLogo {
+    height: 50px;
+    width: 20%;
+}
+#headerLogo img {
+    height: 100%;
+    width: auto;
+}
+#userChange {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 40%;
+}
+#userChange input {
+    margin-right: 15px;
+    border-radius: 50px;
+    border: none;
+    width: 125px;
+    height: 40px;
+    text-align: center;
+}
+#userChange input::placeholder {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold   ;
+}
+#userChange input:focus {
+    border: none;
+    outline: none;
+}
+#userChange h1 {
+    margin: none;
+    padding: none;
+    font-size: xx-large;
+}
+#userChangeButt {
+    border: none;
+    font-size: x-large;
+    text-align: center;
+    background-color: rgba(1, 1, 1, 0);
+}
+#userChangeButt:hover {
+    cursor: pointer;
+}
+#userChangeButt:focus {
+    outline: none;
+}
