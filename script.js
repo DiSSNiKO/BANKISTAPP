@@ -114,7 +114,7 @@ const account4 = {
   pin: 4444,
 };
 
-const accounts = [account1, account2, account3, account4];
+let accounts = [account1, account2, account3, account4];
 
 // Elements
 
@@ -136,9 +136,9 @@ const transferAmount = document.querySelector('#transferAmount');
 const initiateTransfer = document.querySelector('#initiateTransfer');
 const requestAmount = document.querySelector('#requestAmount');
 const initiateRequest = document.querySelector('#initiateRequest');
-const closeUserName = document.querySelectorAll('#closeUserName');
-const closeUserPin = document.querySelectorAll('#closeUserPin');
-const closeUserButton = document.querySelectorAll('#closeUserButton');
+const closeUserName = document.querySelector('#closeUserName');
+const closeUserPin = document.querySelector('#closeUserPin');
+const closeUserButton = document.querySelector('#closeUserButton');
 const transactionsContainer = document.querySelector('#transactionsContainer');
 
 //footer
@@ -225,6 +225,7 @@ const createHtmlElements = function (
 const login = function () {
   const usernameinput = userLoginInput.value;
   const usernamepininput = userPinLoginInput.value;
+  console.log(accounts);
   if (usernameinput != currentUser) {
     for (let account of accounts) {
       if (
@@ -281,11 +282,11 @@ const transferMoney = function () {
     accounts.forEach(account => {
       if (account.username === transferToValue) {
         account.movements.push(transferAmountValue);
+        currentAccount.movements.push(-1 * transferAmountValue);
+        addTopHtml('actionDisplayN', 'Withdraw');
+        balValue.textContent = `$ ${sum(currentAccount.movements)}`;
       }
     });
-    currentAccount.movements.push(-1 * transferAmountValue);
-    addTopHtml('actionDisplayN', 'Withdraw');
-    balValue.textContent = `$ ${sum(currentAccount.movements)}`;
   }
   transferTo.value = '';
   transferAmount.value = '';
@@ -299,7 +300,23 @@ const requestMoney = function(){
     balValue.textContent = `$ ${sum(currentAccount.movements)}`;
     requestAmount.value = '';
   }
-}
+};
+
+const closeUser = function() {
+  const closeUserNameValue = closeUserName.value;
+  const closeUserPinValue = closeUserPin.value;
+  if(currentUser===closeUserNameValue&&currentAccount.pin===Number(closeUserPinValue)){
+    footer.style.display = 'none'; //flex
+    main.style.display = 'none'; //block
+    userName.textContent = 'please log in.'
+    accounts = indexRemove(accounts, accounts.indexOf(currentAccount))
+    clearHtmlElements();
+    transactionListSorted = false;
+    currentAccount = null;
+    currentUser = null;
+    console.log(accounts);
+  }
+};
 
 //event listeners
 
@@ -315,4 +332,7 @@ initiateTransfer.addEventListener('click', function () {
 });
 initiateRequest.addEventListener('click', function () {
   requestMoney();
+});
+closeUserButton.addEventListener('click', function () {
+  closeUser();
 });
