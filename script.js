@@ -145,6 +145,7 @@ const transactionsContainer = document.querySelector('#transactionsContainer');
 const sortButton = document.querySelector('#sortButton');
 const footerPositiveValues = document.querySelectorAll('.footerValueP');
 const footerNegativeValue = document.querySelector('.footerValueN');
+const timer = document.querySelector("#logoutTimer")
 
 //prerequisites
 let currentUser = '';
@@ -154,6 +155,7 @@ main.style.display = 'none';
 footer.style.display = 'none';
 let transactionListSorted = false;
 let preSortedList = [];
+
 
 
 //functions
@@ -201,7 +203,7 @@ const createHtmlElements = function (
       }</h3>
                                 <h3 class="actionDateDisplay"></h3>
                               </div>
-                              <span class="financial">$${arr[i]}</span>
+                              <span class="financial">$${arr[i].toFixed(2)}</span>
                             </div>`;
       transactionsContainer.innerHTML += transactionTemplate;
     } else {
@@ -214,7 +216,7 @@ const createHtmlElements = function (
                                   }">${arr[i] > 0 ? 'Deposit' : 'Withdraw'}</h3>
                                   <h3 class="actionDateDisplay"></h3>
                                 </div>
-                                <span class="financial">$${arr[i]}</span>
+                                <span class="financial">$${arr[i].toFixed(2)}</span>
                               </div>`;
       transactionsContainer.innerHTML += transactionTemplate;
     }
@@ -225,6 +227,7 @@ const createHtmlElements = function (
 const login = function () {
   const usernameinput = userLoginInput.value;
   const usernamepininput = userPinLoginInput.value;
+  logOutTimer();
   console.log(accounts);
   if (usernameinput != currentUser) {
     for (let account of accounts) {
@@ -246,15 +249,15 @@ const login = function () {
         userName.textContent = `${currentAccount.owner}!`;
         footerPositiveValues[0].textContent = `$${positiveSum(
           currentAccount.movements
-        )}`;
+        ).toFixed(2)}`;
         footerPositiveValues[1].textContent = `$${Math.trunc(
           (positiveSum(currentAccount.movements) *
             currentAccount.interestRate) /
             100
-        )}`;
+        ).toFixed(2)}`;
         footerNegativeValue.textContent = `$${negativeSum(
           currentAccount.movements
-        )}`;
+        ).toFixed(2)}`;
         transactionListSorted = false;
         break;
       }
@@ -295,7 +298,7 @@ const transferMoney = function () {
 const requestMoney = function(){
   const requestedAmount = requestAmount.value;
   if(Number(requestedAmount) > 0){
-    currentAccount.movements.push(Number(requestedAmount));
+    currentAccount.movements.push(Math.round(Number(requestedAmount)));
     addTopHtml('actionDisplayP', 'Deposit');
     balValue.textContent = `$ ${sum(currentAccount.movements)}`;
     requestAmount.value = '';
@@ -318,6 +321,28 @@ const closeUser = function() {
   }
 };
 
+const logOut = () => {
+  currentAccount = null;
+  currentUser = null;
+  footer.style.display = 'none';
+  main.style.display = 'none';
+  userName.textContent = 'please log in.'
+  transactionListSorted = false;
+}
+const logOutTimer = () => {
+  let time = 150;
+  const interval = setInterval(function(){
+    timer.textContent = `${Math.trunc(time/60)}:${time%60 > 9 ? time%60:'0'+(time%60).toString()}`
+    time-=1;
+    if(time===-1){
+      // timer.textContent == '0:00';
+      clearInterval(interval);
+      logOut();
+    }
+  }, 1000);
+  loginButton.addEventListener('click', () => {clearInterval(interval);});
+}
+
 //event listeners
 
 loginButton.addEventListener('click', function () {
@@ -336,3 +361,8 @@ initiateRequest.addEventListener('click', function () {
 closeUserButton.addEventListener('click', function () {
   closeUser();
 });
+
+
+const randomInt = (min, max) => {
+
+}

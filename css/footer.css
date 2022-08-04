@@ -25,9 +25,10 @@ footer {
     text-align: center;
 }
 #logoutTimer {
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 1.1rem;
     text-align: center;
+    width: 20px;
 }
 .footerValues {
     display: flex;
