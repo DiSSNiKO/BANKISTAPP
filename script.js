@@ -364,5 +364,5 @@ closeUserButton.addEventListener('click', function () {
 
 
 const randomInt = (min, max) => {
-
+  return Math.trunc(Math.random()*(max-min+1))+min;
 }
